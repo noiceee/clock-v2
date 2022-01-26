@@ -15,8 +15,9 @@ if(isRGB == "off"){
     document.querySelector('.theme-toggle.rgb').classList.remove("off");
     document.querySelector(".menu-wrapper:nth-child(3)").setAttribute("style", "display:none;");
 }else{
-    let animationSpeed = window.localStorage.getItem("animation-speed") || 16;
+    let animationSpeed = window.localStorage.getItem("animation-speed") || 0.8;
     document.querySelector(".inner-border").setAttribute("style", `animation: rgb-animation ${animationSpeed}s linear infinite`);
+    document.querySelector("[name = 'animation-speed']").setAttribute("value", animationSpeed*20);
 }
 document.querySelectorAll(".color-box").forEach((colorBox)=>{
     if(colorBox.classList.contains(isRGB)){
@@ -35,7 +36,7 @@ if(isRed == "on"){
 let showLabel = window.localStorage.getItem("showLabel") || "false";
 document.documentElement.setAttribute("show-label", showLabel);
 if(showLabel == "true"){
-    document.querySelector('.theme-toggle.rgb').classList.remove('off');
+    document.querySelector('.theme-toggle.label').classList.add('off');
 }
 
 setClock();
