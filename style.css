@@ -1,0 +1,249 @@
+:root{
+    --body-bg: rgb(53, 53, 53);
+    --container-bg: rgb(78, 78, 78);
+    --inner-wrapper-bg: rgb(36, 36, 36);
+    --minute-hand: rgba(255, 255, 255, 0.8);
+    --hour-hand: white;
+    --second-hand: rgba(255, 255, 255, 0.3);
+    --body-color: white;
+    --shadow: rgb(0, 0, 0) 0px 22px 70px 4px;
+    --innerwrapper-width: 386px;
+    --innerwrapper-height: 386px;
+    --border-lining: conic-gradient(from -45deg, white, rgb(49, 49, 49), white);
+    --all-gradient: conic-gradient(from 0deg, rgba(255,0,0,1) 0%, rgba(255,132,50,1) 20%, rgba(127,255,113,1) 43%, rgba(0,228,255,1) 67%, rgba(255,209,107,1) 85%, rgba(255,0,0,1) 100%);
+    --pink-gradient: conic-gradient(from 0deg, #ffe3db, #ff98ff, #ff8462, #ffe3db);
+    --green-gradient: conic-gradient(from 0deg, #00ff62, #4afff6, #65ffde, #00ff62);
+    --purple-gradient: conic-gradient(from 0deg, #b700ff, #ff52bd, #ff41d0, #b700ff);
+}
+[color-theme = "light"]{
+    --body-bg: rgb(255, 255, 255);
+    --shadow: rgb(255, 255, 255) 0px 0px 90px;
+    --border-lining: white;
+}
+[rgb = "all-color"]{
+    --border-lining: var(--all-gradient);
+    --innerwrapper-width: 380px;
+    --innerwrapper-height: 380px;
+    --rgb-animation: rgb-animation;
+}
+[rgb = "green-color"]{
+    --border-lining: var(--green-gradient);
+    --innerwrapper-width: 380px;
+    --innerwrapper-height: 380px;
+    --rgb-animation: rgb-animation;
+}
+[rgb = "purple-color"]{
+    --border-lining: var(--purple-gradient);
+    --innerwrapper-width: 380px;
+    --innerwrapper-height: 380px;
+    --rgb-animation: rgb-animation;
+}
+[rgb = "pink-color"]{
+    --border-lining: var(--pink-gradient);
+    --innerwrapper-width: 380px;
+    --innerwrapper-height: 380px;
+    --rgb-animation: rgb-animation;
+}
+[rgb = "off"]{
+    --show-option: none;
+}
+
+[red="on"]{
+    --second-hand: red;
+}
+*{
+    margin: 0px;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--body-bg);
+    flex-direction: column;
+    color: var(--body-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color .5s linear;
+}   
+.container{
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+    background-color: var(--container-bg);
+    /* box-shadow: 0 0 100px 10px black; */
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.inner-border{
+    position: absolute;
+    height: 390px;
+    width: 390px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--border-lining);
+    transition: background 3s ease;
+    animation: var(--rgb-animation) .6s linear infinite;
+}
+@keyframes rgb-animation {
+    to{
+        transform: rotate(360deg);
+    }
+}
+.inner-wrapper{
+    background-color: var(--inner-wrapper-bg);
+    width: var(--innerwrapper-width);
+    height: var(--innerwrapper-height);
+    border-radius: 50%;
+    /* border: 2px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: height 1s linear, width 1s ease, color 3s ease;
+}
+.hand{
+    width: 2px;
+    position: absolute;
+    bottom: 50%;
+}
+.minute-hand{
+    background-color: var(--minute-hand);
+    height: 130px;
+    transform-origin: bottom;
+}
+.hour-hand{
+    background-color: var(--hour-hand);
+    transform-origin: bottom;
+    height: 80px;
+}
+.second-hand{
+    background-color: var(--second-hand);
+    transform-origin: bottom;
+    height: 160px;
+    transition: background-color 1s linear;
+}
+@media screen and (max-width: 500px) {
+    .container {
+        height: 80vw;
+        width: 80%;
+    }
+    .inner-border{
+        height: calc(80vw - 4px);
+        width: calc(80vw - 4px);
+    }
+    .inner-wrapper{
+        height: calc(80vw - 8px);
+        width: calc(80vw - 8px);
+    }
+    .minute-hand{
+        height: 36%;
+    }
+    .hour-hand{
+        height: 20%;
+    }
+    .second-hand{
+        height: 40%;
+    }
+}
+.settings{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+.settings:hover .setting-menu{
+    transform: translateX(-30px);
+    visibility: visible;
+    opacity: 1;
+}
+.settings svg{
+    transition: all 1s ease;
+    cursor: pointer;
+}
+.settings svg:hover{
+    transform: rotate(360deg);
+}
+.setting-menu{
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    border-radius: 15px;
+    padding: 15px;
+    bottom: 0px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--container-bg);
+    transition: all .3s ease, transform .5s ease-out;
+}
+.menu-wrapper{
+    margin: 10px 0px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 1s ease;
+}
+.theme-toggle{
+    cursor: pointer;
+    height: 20px;
+    width: 50px;
+    background-color: grey;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.theme-toggle .knob{
+    width: 25px;
+    height: 25px;
+    background-color: lightgrey;
+    border-radius: 50%;
+    position: absolute;
+    left: 0%;
+    transition: transform .5s ease-out;
+}
+.theme-toggle.off{
+    background-color: rgb(161, 161, 161);
+}
+.theme-toggle.off .knob{
+    background-color: rgb(255, 122, 122);
+    transform: translateX(100%);
+}
+.menu-wrapper:nth-child(3){
+    display:inline;
+    display: var(--show-option);
+}
+.theme-color-brick{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.color-box{
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+}
+.color-box.active{
+    border-color: rgb(122, 122, 255);
+}
+.all-color{
+    background: var(--all-gradient);
+}
+.green-color{
+    background: var(--green-gradient);
+}
+.purple-color{
+    background: var(--purple-gradient);
+}
+.pink-color{
+    background: var(--pink-gradient);
+}

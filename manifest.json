@@ -1,0 +1,14 @@
+{
+"name": "STUDY",
+"version": "0.0.1",
+"manifest_version": 2,
+"description": "A minimalist clock. Shows the time in tab title.",
+"icons": {
+"16": "images/clock.png",
+"48": "images/clock.png",
+"128": "images/clock.png"
+},
+"chrome_url_overrides": {
+"newtab": "index.html"
+}
+}
