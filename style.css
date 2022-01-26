@@ -14,11 +14,15 @@
     --pink-gradient: conic-gradient(from 0deg, #ffe3db, #ff98ff, #ff8462, #ffe3db);
     --green-gradient: conic-gradient(from 0deg, #00ff62, #4afff6, #65ffde, #00ff62);
     --purple-gradient: conic-gradient(from 0deg, #b700ff, #ff52bd, #ff41d0, #b700ff);
+    --label-visibilty: 0;
 }
 [color-theme = "light"]{
     --body-bg: rgb(255, 255, 255);
     --shadow: rgb(255, 255, 255) 0px 0px 90px;
     --border-lining: white;
+}
+[show-label = "true"]{
+    --label-visibilty: 1;
 }
 [rgb = "all-color"]{
     --border-lining: var(--all-gradient);
@@ -53,6 +57,7 @@
 }
 *{
     margin: 0px;
+    font-size: 16px;
 }
 body{
     display: flex;
@@ -87,7 +92,7 @@ body{
     border-radius: 50%;
     background: var(--border-lining);
     transition: background 3s ease;
-    animation: var(--rgb-animation) .6s linear infinite;
+    animation: var(--rgb-animation) .8s linear infinite;
 }
 @keyframes rgb-animation {
     to{
@@ -150,6 +155,55 @@ body{
         height: 40%;
     }
 }
+.labels{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: var(--label-visibilty);
+    transition: opacity 2s ease;
+}
+.label{
+    color: var(--minute-hand);
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.label-1{
+    transform: rotate(30deg);
+}
+.label-2{
+    transform: rotate(60deg);
+}
+.label-3{
+    transform: rotate(90deg);
+}
+.label-4{
+    transform: rotate(120deg);
+}
+.label-5{
+    transform: rotate(150deg);
+}
+.label-6{
+    transform: rotate(180deg);
+}
+.label-7{
+    transform: rotate(210deg);
+}
+.label-8{
+    transform: rotate(240deg);
+}
+.label-9{
+    transform: rotate(270deg);
+}
+.label-10{
+    transform: rotate(300deg);
+}
+.label-11{
+    transform: rotate(330deg);
+}
 .settings{
     position: fixed;
     bottom: 30px;
@@ -160,11 +214,11 @@ body{
     visibility: visible;
     opacity: 1;
 }
-.settings svg{
+.settings .setting-icon{
     transition: all 1s ease;
     cursor: pointer;
 }
-.settings svg:hover{
+.settings .setting-icon:hover{
     transform: rotate(360deg);
 }
 .setting-menu{
@@ -246,4 +300,47 @@ body{
 }
 .pink-color{
     background: var(--pink-gradient);
+}
+.speed-slider{
+    color: rgb(179, 179, 179);
+    font-size: 14px;
+    margin-top: 20px;
+}
+.speed-slider input{
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(90deg, #fad0c4, #ff85ff);
+    color: #fad0c4;
+    outline: none;
+    height: 3px;
+    border-radius: 10px;
+    width: 100%;
+}
+.speed-slider input::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    background: #ff7751;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+.social-icons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+}
+.social-icons div{
+    cursor: pointer;
+    color: lightgray;
+    width: fit-content;
+    height: fit-content;
+    transition: all .4s ease;
+}
+.social-icons div:hover{
+    color: white;
+    transform: scale(1.2);
 }
