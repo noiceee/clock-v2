@@ -3,6 +3,18 @@ const secondHand = document.querySelector(".second-hand");
 const hourHand = document.querySelector(".hour-hand");
 const timeDiv = document.querySelector(".time-container");
 
+setClock();
+
+let showWallpaper =  window.localStorage.getItem("wallpaper") || "true";
+if(window.localStorage.getItem("wallpaperURL") && showWallpaper == "true"){
+    document.querySelector("body").setAttribute("style", `background: url(${localStorage.getItem('wallpaperURL')})`);
+}else{
+    document.documentElement.setAttribute("wallpaper", showWallpaper);
+}
+if(showWallpaper == "false"){
+    document.querySelector('.theme-toggle.wallpaper').classList.remove('off');
+}
+
 let currentTheme =  window.localStorage.getItem("theme") || "light";
 document.documentElement.setAttribute("color-theme", currentTheme);
 if(currentTheme == "light"){
@@ -39,9 +51,21 @@ if(showLabel == "true"){
     document.querySelector('.theme-toggle.label').classList.add('off');
 }
 
-setClock();
-
 setInterval(setClock, 1000);
+
+document.getElementById("wallpaper-file").addEventListener('change', (e)=>{
+    const reader = new FileReader();
+    console.log("called");
+    const file = e.target.files[0];
+    console.log(file);
+    reader.readAsDataURL(file);
+    reader.onload = ()=>{
+        console.log(reader.result);
+        window.localStorage.setItem("wallpaperURL", reader.result);
+        document.querySelector("body").setAttribute("style", `background: url(${reader.result})`);
+    }
+})
+
 
 function setClock(){
     const date = new Date();
@@ -123,11 +147,30 @@ function setLabel(){
         window.localStorage.setItem("showLabel", showLabel);
     }
 }
+function setWallpaper(){
+    if(showWallpaper=="false"){
+        document.documentElement.setAttribute("wallpaper", "true");
+        showWallpaper = "true";
+        window.localStorage.setItem("wallpaper", showWallpaper);
+        if(window.localStorage.getItem("wallpaperURL")){
+            document.querySelector("body").setAttribute("style", `background: url(${localStorage.getItem('wallpaperURL')})`);
+        }
+        document.querySelector('.theme-toggle.wallpaper').classList.add("off");
+    }
+    else{
+        document.documentElement.setAttribute("wallpaper", "false");
+        document.querySelector('.theme-toggle.wallpaper').classList.remove('off');
+        showWallpaper = "false";
+        document.querySelector("body").setAttribute("style", `background: none)`);
+        window.localStorage.setItem("wallpaper", showWallpaper);
+    }
+}
 
 document.querySelector('.theme-toggle').addEventListener('click', setTheme);
 document.querySelector('.theme-toggle.rgb').addEventListener('click', setRGB);
 document.querySelector('.theme-toggle.red').addEventListener('click', setRED);
 document.querySelector('.theme-toggle.label').addEventListener('click', setLabel);
+document.querySelector('.theme-toggle.wallpaper').addEventListener('click', setWallpaper);
 
 const colorOptions = ["all-color", "green-color", "purple-color", "pink-color"];
 for(i=0; i<4; i++){

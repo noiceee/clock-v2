@@ -18,8 +18,18 @@
 }
 [color-theme = "light"]{
     --body-bg: rgb(255, 255, 255);
-    --shadow: rgb(255, 255, 255) 0px 0px 90px;
     --border-lining: white;
+    --container-bg: rgba(230, 230, 230, 0.795);
+    --inner-wrapper-bg: rgba(218, 218, 218, 0.925);
+    --container-filter: blur(6px);
+    --body-color: rgb(88, 88, 88);
+    --minute-hand: rgba(104, 104, 104, 0.562);
+    --hour-hand: rgba(70, 70, 70, 0.856);
+    --shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    --second-hand: rgb(167, 167, 167);
+}
+[wallpaper = "true"]{
+    --body-bg: url("https://picsum.photos/1920/1080");
 }
 [show-label = "true"]{
     --label-visibilty: 1;
@@ -65,17 +75,19 @@ body{
     justify-content: space-evenly;
     height: 100vh;
     overflow: hidden;
-    background-color: var(--body-bg);
+    background-size: cover !important;
+    background-position: center !important;
+    background: var(--body-bg);
     flex-direction: column;
     color: var(--body-color);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background-color .5s linear;
 }   
 .container{
     height: 400px;
     width: 400px;
     border-radius: 50%;
-    background-color: var(--container-bg);
+    background: var(--container-bg);
+    backdrop-filter: var(--container-filter);
     /* box-shadow: 0 0 100px 10px black; */
     box-shadow: var(--shadow);
     display: flex;
@@ -335,12 +347,63 @@ body{
 }
 .social-icons div{
     cursor: pointer;
-    color: lightgray;
+    color: var(--body-color);
     width: fit-content;
     height: fit-content;
     transition: all .4s ease;
 }
 .social-icons div:hover{
-    color: white;
     transform: scale(1.2);
 }
+.menu-wrapper.wall{
+    flex-wrap: wrap;
+}
+.menu-wallpaper{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.wallpaper-settings{
+    overflow: hidden;
+    width: 100%;
+    margin-top: 20px;
+    outline: none;
+}
+input[type = "file"]::-webkit-file-upload-button{
+    /* visibility: hidden; */
+    background: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    color: white;
+    padding: 10px;
+    width: 200px;
+    cursor: pointer;
+    border: solid 1px white;
+    border-radius: 10px;
+    font-weight: 500;
+}
+/* .wallpaper-settings label{
+    position: relative;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer; 
+    text-align: center;
+    width: 200px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    transition: all 1s ease;
+    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px rgb(49, 49, 49);
+    border-radius: 10px;
+} */
+/* .wallpaper-settings label:hover{
+    background-position: right center; /* change the direction of the change here 
+    color: #fff;
+    text-decoration: none;
+} */
