@@ -29,7 +29,7 @@
     --second-hand: rgb(167, 167, 167);
 }
 [wallpaper = "true"]{
-    --body-bg: url("https://picsum.photos/1920/1080");
+    --body-bg: url("https://source.unsplash.com/1920x1080/?green&nature");
 }
 [show-label = "true"]{
     --label-visibilty: 1;

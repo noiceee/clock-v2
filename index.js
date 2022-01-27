@@ -15,7 +15,7 @@ if(showWallpaper == "false"){
     document.querySelector('.theme-toggle.wallpaper').classList.remove('off');
 }
 
-let currentTheme =  window.localStorage.getItem("theme") || "light";
+let currentTheme =  window.localStorage.getItem("theme") || "dark";
 document.documentElement.setAttribute("color-theme", currentTheme);
 if(currentTheme == "light"){
     document.querySelector('.theme-toggle').classList.add('off');
